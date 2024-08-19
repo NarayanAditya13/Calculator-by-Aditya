@@ -1,6 +1,12 @@
 const display = document.getElementById('display');
 const buttons = Array.from(document.getElementsByClassName('btn'));
 const clickSound = document.getElementById('clickSound');
+const themeSwitch = document.getElementById('theme-switch');
+const themeText = document.getElementById('theme-text');
+const body = document.body;
+
+// Set initial text based on the current theme
+themeText.textContent = body.classList.contains('light-mode') ? 'Dark Mode' : 'Light Mode';
 
 buttons.map(button => {
     button.addEventListener('click', (e) => {
@@ -8,6 +14,11 @@ buttons.map(button => {
         const value = e.target.getAttribute('data-value');
         handleInput(value);
     });
+});
+
+themeSwitch.addEventListener('change', () => {
+    body.classList.toggle('light-mode');
+    themeText.textContent = body.classList.contains('light-mode') ? 'Dark Mode' : 'Light Mode';
 });
 
 function playClickSound() {
